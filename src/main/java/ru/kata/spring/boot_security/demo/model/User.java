@@ -4,17 +4,16 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
-import java.util.Collection;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
+@NamedEntityGraph
 @Entity
 @Table(name = "users")
 public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
     @Column(name = "name")
     private String name;
@@ -35,15 +34,14 @@ public class User implements UserDetails {
     @JoinTable(name = "users_roles",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "roles_id")
-
     )
-
     @Column(name = "roles")
     private Set<Role> roles;
 
     public void addRole(Role role) {
         roles.add(role);
     }
+
 
     public User() {
     }
@@ -92,11 +90,11 @@ public class User implements UserDetails {
 
 
 
-    public int getId() {
+    public Long getId() {
         return this.id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -149,18 +147,18 @@ public class User implements UserDetails {
     }
 
 
-    // @Override
-    // public String toString() {
-    //     return "{" +
-    //         " id='" + getId() + "'" +
-    //         ", name='" + getName() + "'" +
-    //         ", age='" + getAge() + "'" +
-    //         ", car='" + getCar() + "'" +
-    //         ", username='" + getUsername() + "'" +
-    //         ", password='" + getPassword() + "'" +
-    //         ", roles='" + getRoles() + "'" +
-    //         "}";
-    // }
+    @Override
+    public String toString() {
+        return "{" +
+            " id='" + getId() + "'" +
+            ", name='" + getName() + "'" +
+            ", age='" + getAge() + "'" +
+            ", car='" + getCar() + "'" +
+            ", username='" + getUsername() + "'" +
+            ", password='" + getPassword() + "'" +
+            ", roles='" + getRoles() + "'" +
+            "}";
+    }
 
 
     @Override

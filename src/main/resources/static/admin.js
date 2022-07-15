@@ -117,6 +117,7 @@ on(document, 'click', '#edit-user', e => {
     document.getElementById('roles2').value = userInfo.children[5].innerHTML
     document.getElementById('password2').value = userInfo.children[6].innerHTML
 
+
     $("#modalEdit").modal("show")
 })
 
@@ -131,7 +132,7 @@ editUserForm.addEventListener('submit', (e) => {
         body: JSON.stringify({
             id: document.getElementById('id2').value,
             name: document.getElementById('name2').value,
-            surname: document.getElementById('car2').value,
+            car: document.getElementById('car2').value,
             age: document.getElementById('age2').value,
             username: document.getElementById('username2').value,
             password: document.getElementById('password2').value,

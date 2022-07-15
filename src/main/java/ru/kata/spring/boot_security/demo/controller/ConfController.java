@@ -20,7 +20,6 @@ public class ConfController {
     @Autowired
     private UserService userService;
 
-    //сделать два контрллера отделбно для юзера и для админа
 
 
     @GetMapping("/user")
